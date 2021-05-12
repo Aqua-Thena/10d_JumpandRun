@@ -1,33 +1,91 @@
 
-/**
- * Beschreiben Sie hier die Klasse LUECKENSYMBOL.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
-public class LUECKENSYMBOL
+import java.awt.*;
+import javax. swing. *;
+
+class LUECKENSYMBOL
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
+    /** Das Anzeigefenster. */
+    private JFrame fenster;
+    
+    /** Anzeigegröße für das Rumpfelement */
+    private static final int groesse = OBERFLAECHE. RasterGroesseGeben ();
+
+    /** Interna */
     private int x;
+    private int y;
+    private JComponent anzeige;
 
     /**
-     * Konstruktor für Objekte der Klasse LUECKENSYMBOL
+     * Standardkonstruktor für Objekte der Klasse KASSENSYMBOL.
+     * Er erzeugt ein scharzes Rechteck in der linken oberen Ecke des Fensters.
+     * Das Fenster wird bei Bedarf angelegt.
      */
-    public LUECKENSYMBOL()
+    LUECKENSYMBOL()
     {
-        // Instanzvariable initialisieren
-        x = 0;
+        fenster = OBERFLAECHE. FensterGeben ();
+        anzeige = new JComponent () {
+            // Stellt das Rumpfelement auf dem Fenster dar.
+            public void paintComponent (Graphics g)
+            {
+                g. clearRect (0, 0, groesse, groesse);
+                g. setColor (Color. white);
+                g. fillRect (0, 0, groesse - 1, groesse - 1);
+                g. setColor (Color. black);
+                g. drawRect (0, 0, groesse - 1, groesse - 1);
+                g. drawRect (1, 1, groesse - 3, groesse - 3);
+                g. drawLine (0, 0, groesse - 1, groesse - 1);
+                g. drawLine (1, 0, groesse - 1, groesse - 2);
+                g. drawLine (0, 1, groesse - 2, groesse - 1);
+                g. drawLine (0, groesse - 1, groesse - 1, 0);
+                g. drawLine (1, groesse - 1, groesse - 1, 1);                
+                g. drawLine (0, groesse - 2, groesse - 2, 0);
+            }
+
+        };
+        anzeige. setVisible (true);
+        anzeige. setSize (groesse, groesse);
+        fenster. add (anzeige, 0);
+        PositionSetzen (0, 0);
     }
 
     /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
+     * Setzt die Position des Rumpfelements. Der Ursprung liegt in der Mitte des
+     * Fensters, die y-Achse zeigt nach unten. (x /y) bedeutet das
+     * K&auml;stchen rechts unterhalb der Gitterlinien.
+     * @param x x-Position
+     * @param y y-Position
      */
-    public int beispielMethode(int y)
+    public void PositionSetzen (int x, int y)
     {
-        // tragen Sie hier den Code ein
-        return x + y;
+        this. x = x;
+        this. y = y;
+        anzeige. setLocation (OBERFLAECHE. FensterBreiteGeben () / 2 + x * groesse, OBERFLAECHE. FensterHoeheGeben () / 2 + y * groesse);
+    }
+
+    /**
+     * Gibt den X-Wert der Position des Kopfelements.
+     * @return x-Position
+     */
+    int XPositionGeben ()
+    {
+        return x;
+    }
+
+    /**
+     * Gibt den Y-Wert der Position des Kopfelements.
+     * @return y-Position
+     */
+    int YPositionGeben ()
+    {
+        return y;
+    }
+
+    /**
+     * Entfernt die Figur aus der Anzeige
+     */
+    public void Entfernen ()
+    {
+        (OBERFLAECHE. FensterGeben ()). remove (anzeige);
+        (OBERFLAECHE. FensterGeben ()). repaint();
     }
 }

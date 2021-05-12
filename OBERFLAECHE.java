@@ -1,33 +1,102 @@
 
+import java. awt. *;
+import javax. swing. *;
+
 /**
- * Beschreiben Sie hier die Klasse OBERFLAECHE.
+ * Verwaltet das Ausgabefenster.
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Albert Wiedemann
+ * @version 1.0
  */
-public class OBERFLAECHE
+class OBERFLAECHE
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
+    /** Anzeigegröße für eine Rasterkachel */
+    private static final int rasterGroesse = 40;
+    /** Höhe des Anzeigefensters */
+    private static final int hoeheFenster = rasterGroesse * 20;
+    /** Breite des Anzeigefensters */
+    private static final int breiteFenster = rasterGroesse * 26;
+    private static OBERFLAECHE o = null;
+    private JFrame fenster = null;
 
     /**
-     * Konstruktor für Objekte der Klasse OBERFLAECHE
+     * Baut die Bedienoberfläche auf
      */
-    public OBERFLAECHE()
+    private OBERFLAECHE ()
     {
-        // Instanzvariable initialisieren
-        x = 0;
+        fenster = new JFrame ("Zeichenfläche");
+        fenster. setResizable (false);
+        fenster. setVisible (true);
+        fenster. setLayout (null);
+        fenster. getContentPane (). setBackground (new Color (240, 240, 240));
+        Insets i = fenster.getInsets();
+        fenster. setSize (breiteFenster, hoeheFenster + i.top);         // Ausgleich für Fenstertitel
+        JComponent hintergrund = new JComponent ()
+        {
+             /**
+             * Zeichnet das Hintergrundmuster.
+             */
+            public void paintComponent (Graphics g)
+            {
+                g. setColor (Color. lightGray);
+                for (int i = 1; i <= hoeheFenster / (rasterGroesse * 2); i++)
+                {
+                    g. drawLine (0, hoeheFenster / 2 + i * rasterGroesse, breiteFenster - 1, hoeheFenster / 2 + i * rasterGroesse);
+                    g. drawLine (0, hoeheFenster / 2 - i * rasterGroesse, breiteFenster - 1, hoeheFenster / 2 - i * rasterGroesse);
+                }
+                for (int i = 1; i <= breiteFenster / (rasterGroesse * 2); i++)
+                {
+                    g. drawLine (breiteFenster / 2 + i * rasterGroesse, 0, breiteFenster / 2 + i * rasterGroesse, hoeheFenster - 1);
+                    g. drawLine (breiteFenster / 2 - i * rasterGroesse, 0, breiteFenster / 2 - i * rasterGroesse, hoeheFenster - 1);
+                }
+                g. setColor (Color. black);
+                g. drawLine (0, hoeheFenster / 2, breiteFenster - 1, hoeheFenster / 2);
+                g. drawLine (breiteFenster / 2, 0, breiteFenster / 2, hoeheFenster - 1);
+            }
+        };
+        hintergrund. setVisible (true);
+        hintergrund. setSize (breiteFenster, hoeheFenster);
+        hintergrund. setLocation (0, 0);
+        fenster. add (hintergrund);
     }
 
     /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
+     * Gibt das Ausgabefenster zurück und erzeugt es gegebenenfalls.
+     * @return Ausgabefenster
      */
-    public int beispielMethode(int y)
+    static JFrame FensterGeben ()
     {
-        // tragen Sie hier den Code ein
-        return x + y;
+        if (o == null)
+        {
+            o = new OBERFLAECHE ();
+        }
+        return o. fenster;
+    }
+
+    /**
+     * Gibt die Rastergröße zurück.
+     * @return Ausgabefenster
+     */
+    static int RasterGroesseGeben ()
+    {
+        return rasterGroesse;
+    }
+
+    /**
+     * Gibt die Breite des Fensters zurück.
+     * @return Fensterbreite
+     */
+    static int FensterBreiteGeben ()
+    {
+        return breiteFenster;
+    }
+
+    /**
+     * Gibt die Höhe des Fensters zurück.
+     * @return Fensterhöhe
+     */
+    static int FensterHoeheGeben ()
+    {
+        return hoeheFenster;
     }
 }

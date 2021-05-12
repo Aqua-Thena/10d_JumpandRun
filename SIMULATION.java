@@ -1,33 +1,92 @@
 
-/**
- * Beschreiben Sie hier die Klasse SIMULATION.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
-public class SIMULATION
-{
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import javax. swing. *;
 
+/**
+ * Steuert die gesamte Simulation
+ * 
+ * @author Albert Wiedemann
+ * @version 1.0
+ */
+class SIMULATION
+{
+    /** Timerobjekt für die zentrale Zeitverwaltung */
+    private Timer timer;
+    
     /**
-     * Konstruktor für Objekte der Klasse SIMULATION
+     * Standardkonstruktor für Objekte der Klasse Simulation.
+     * Erzeugt den Taktgeber.
      */
-    public SIMULATION()
+    SIMULATION ()
     {
-        // Instanzvariable initialisieren
-        x = 0;
+        timer = new Timer (1000, new ActionListener () {
+            /**
+             * vom Timer aufgerufen
+             * erhöht die Simulationszeit
+             * @param evt der Timerevent
+             */
+            public void actionPerformed (ActionEvent evt)
+            {
+                TaktImpulsAusfuehren ();
+            }
+        });
+        OBERFLAECHE. FensterGeben (). addKeyListener (new KeyAdapter() {
+            /**
+             * Gibt die Taste an die eigentliche Aktionsmethode weiter.
+             * @param e das zugrestellte Ereignis
+             */
+            public void keyPressed(KeyEvent e)
+            {
+                TasteGedrueckt ((char) e. getKeyCode ());
+            }
+        });
+
+    }
+    
+    /**
+     * Die eigentliche Aktionsmethode des Timers.
+     * Muss bei Bedarf von einer Unterklasse überschrieben werden. 
+     */
+    void TaktImpulsAusfuehren ()
+    {
+        System. out. println ("Tick");
     }
 
     /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
+     * Timer starten
      */
-    public int beispielMethode(int y)
+    void Starten ()
     {
-        // tragen Sie hier den Code ein
-        return x + y;
+        timer. start ();
+    }
+
+    /**
+     * Timer anhalten
+     */
+    void Anhalten ()
+    {
+        timer. stop ();
+    }
+    
+    /**
+     * Ablaufgeschwindigkeit einstellen
+     * 
+     * @param dauer: Angabe in Millisekunden
+     */
+    void TaktdauerSetzen (int dauer)
+    {
+        timer. setDelay(dauer);
+    }
+    
+    /**
+     * Die eigentliche Aktionsmethode für gedrückte Tasten.
+     * <br>Muss bei Bedarf von einer Unterklasse überschrieben werden. 
+     * @param welche die gedrückte Taste
+     */
+    void TasteGedrueckt (char welche)
+    {
+    	System. out. println ("Taste gedrückt: " + welche);
     }
 }
