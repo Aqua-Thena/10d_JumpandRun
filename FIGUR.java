@@ -88,4 +88,37 @@ class FIGUR
         (OBERFLAECHE. FensterGeben ()). remove (anzeige);
         (OBERFLAECHE. FensterGeben ()). repaint();
     }
+
+
+     
+       
+    int XPositionGeben ()
+    {
+        return kopf. XPositionGeben();
+    }
+    
+    /**
+     * Gibt die y-Position des Schlangenkopfs zurück.
+     * @return y-Position des Schlangenkopfs
+     */
+    int YPositionGeben ()
+    {
+        return kopf. YPositionGeben();
+    }
+        
+    /**
+     * Prueft ob der Schlangenkopf auf der Position eines Rumpfsymbols ist, d.h. sich die Schlange selbst gebissen hat.
+     * return wahr, wenn der Kopf im Rumpf liegt.
+     */
+    boolean FigurTrifftHindernis ()
+    {
+        for (RUMPFSYMBOL r: rumpf)
+        {
+            if ((kopf.XPositionGeben() == r.XPositionGeben()) && (kopf.YPositionGeben() == r.YPositionGeben()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

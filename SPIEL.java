@@ -1,33 +1,98 @@
 
+import java. awt. event. *;
+
 /**
- * Beschreiben Sie hier die Klasse SPIEL.
+ * Rahmenklasse des Spiels.
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Albert Wiedemann
+ * @version 1.0
  */
-public class SPIEL extends SIMULATION
+class SPIEL extends SIMULATION
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
-
+    /** Die Schlange. */
+    FIGUR figur;
+    /** Das Spielfeld. */
+    RANDSYMBOL spielfeldrand;
+    /** Der Punktestand */
+    int punkte;
+    /** Verlängerungsintervall */
+    final static int maxSchritte = 10;
+    /** Aktuelle Schrittzahl für Verlängerung */
+    int aktSchritte;
+    
     /**
-     * Konstruktor für Objekte der Klasse SPIEL
+     * Baut die Basiselemente auf.
      */
-    public SPIEL()
+    SPIEL ()
     {
-        // Instanzvariable initialisieren
-        x = 0;
+        figur = new FIGUR (0, 0, 'O');
+        spielfeldrand = new RANDSYMBOL ();
+        punkte = 0;
+        aktSchritte = maxSchritte;
     }
-
+    
     /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
+     * Bewegt die Schlange.
      */
-    public int beispielMethode(int y)
+    void TaktImpulsAusfuehren ()
     {
-        // tragen Sie hier den Code ein
-        return x + y;
+        if ((figur. XPositionGeben() <= spielfeldrand. XMaxGeben()) && (figur. XPositionGeben() >= spielfeldrand. XMinGeben()) &&
+            (figur. YPositionGeben() <= spielfeldrand. YMaxGeben()) && (figur. YPositionGeben() >= spielfeldrand. YMinGeben()) &&
+            ! figur. FigurTrifftHindernis())
+        {
+            aktSchritte = aktSchritte - 1;
+            if (aktSchritte <= 0)
+            {
+                figur. Bewegen(true);
+                aktSchritte = maxSchritte;
+            }
+            else
+            {
+                figur. Bewegen(false);
+            }
+            punkte += 1;
+            spielfeldrand. PunkteSetzen (punkte);
+        }
+        else
+        {
+            Anhalten ();
+            if (figur. FigurTrifftHindernis())
+            {
+                spielfeldrand.EndemeldungSetzen("Game Over - Figur trifft Hindernis");
+            }
+            else
+            {
+                spielfeldrand.EndemeldungSetzen("Game Over - Figur über Spielfeldrand");
+            }
+        }
     }
-}
+    
+    /**
+     * Wertet die Tasteneingaben aus.
+     * @param welche Tastencode
+     */
+    void TasteGedrueckt (char welche)
+    {
+        switch (welche)
+        {
+          case 'S':
+          case 's':
+            Starten ();
+            break;
+          case 'P':
+          case 'p':
+            Anhalten ();
+            break;
+          
+          default:
+            //System. out. println ("Taste: " + (0 + (int) welche));
+        }
+    }
+    
+    void Bewegen (char welche)
+    {
+        switch (welche)
+        {
+            case 
+        }
+    }

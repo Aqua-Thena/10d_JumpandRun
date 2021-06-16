@@ -1,7 +1,8 @@
+
 import java.awt.*;
 import javax. swing. *;
 
-class STEINSYMBOL
+class LANDSCHAFT
 {
     /** Das Anzeigefenster. */
     private JFrame fenster;
@@ -19,7 +20,7 @@ class STEINSYMBOL
      * Er erzeugt ein scharzes Rechteck in der linken oberen Ecke des Fensters.
      * Das Fenster wird bei Bedarf angelegt.
      */
-    STEINSYMBOL()
+    LANDSCHAFT()
     {
         fenster = OBERFLAECHE. FensterGeben ();
         anzeige = new JComponent () {
@@ -58,7 +59,7 @@ class STEINSYMBOL
     {
         this. x = x;
         this. y = y;
-        anzeige. setLocation (OBERFLAECHE. FensterBreiteGeben () / 3 + x * groesse, OBERFLAECHE. FensterHoeheGeben () / 2 + y * groesse);
+        anzeige. setLocation (OBERFLAECHE. FensterBreiteGeben () / 2 + x * groesse, OBERFLAECHE. FensterHoeheGeben () / 2 + y * groesse);
     }
 
     /**
@@ -77,5 +78,14 @@ class STEINSYMBOL
     int YPositionGeben ()
     {
         return y;
+    }
+
+    /**
+     * Entfernt die Figur aus der Anzeige
+     */
+    public void Entfernen ()
+    {
+        (OBERFLAECHE. FensterGeben ()). remove (anzeige);
+        (OBERFLAECHE. FensterGeben ()). repaint();
     }
 }

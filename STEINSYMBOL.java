@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import javax. swing. *;
 
@@ -78,5 +77,14 @@ class STEINSYMBOL
     int YPositionGeben ()
     {
         return y;
+    }
+
+    /**
+     * Entfernt die Figur aus der Anzeige
+     */
+    public void Entfernen ()
+    {
+        (OBERFLAECHE. FensterGeben ()). remove (anzeige);
+        (OBERFLAECHE. FensterGeben ()). repaint();
     }
 }
