@@ -9,7 +9,8 @@ import java. awt. event. *;
  */
 class SPIEL extends SIMULATION
 {
-    /** Die Schlange. */
+    STEIN stein;
+    
     FIGUR figur;
     /** Das Spielfeld. */
     RANDSYMBOL spielfeldrand;
@@ -20,25 +21,25 @@ class SPIEL extends SIMULATION
     /** Aktuelle Schrittzahl für Verlängerung */
     int aktSchritte;
     
+    int x;
+    int y;
+    
     /**
      * Baut die Basiselemente auf.
      */
     SPIEL ()
     {
-        figur = new FIGUR (0, 0, 'O');
+        figur = new FIGUR ();
         spielfeldrand = new RANDSYMBOL ();
         punkte = 0;
         aktSchritte = maxSchritte;
     }
     
-    /**
-     * Bewegt die Schlange.
-     */
     void TaktImpulsAusfuehren ()
     {
         if ((figur. XPositionGeben() <= spielfeldrand. XMaxGeben()) && (figur. XPositionGeben() >= spielfeldrand. XMinGeben()) &&
             (figur. YPositionGeben() <= spielfeldrand. YMaxGeben()) && (figur. YPositionGeben() >= spielfeldrand. YMinGeben()) &&
-            ! figur. FigurTrifftHindernis())
+            ! figur. FigurTrifftStein())
         {
             aktSchritte = aktSchritte - 1;
             if (aktSchritte <= 0)
@@ -56,7 +57,7 @@ class SPIEL extends SIMULATION
         else
         {
             Anhalten ();
-            if (figur. FigurTrifftHindernis())
+            if (figur. FigurTrifftStein())
             {
                 spielfeldrand.EndemeldungSetzen("Game Over - Figur trifft Hindernis");
             }
@@ -83,16 +84,46 @@ class SPIEL extends SIMULATION
           case 'p':
             Anhalten ();
             break;
+          case 'J':
+          case 'j':
+            Springen ();
           
           default:
             //System. out. println ("Taste: " + (0 + (int) welche));
         }
     }
     
-    void Bewegen (char welche)
+    void Bewegen (boolean springen)
     {
-        switch (welche)
-        {
-            case 
-        }
+        int x, xalt;
+        int y, yalt;
+        x = figur. XPositionGeben ();
+        y = figur. YPositionGeben ();
+        xalt = x;
+        yalt = y;
+        
+        figur. PositionSetzen (x, y);
     }
+        
+    int XPositionGeben ()
+    {
+        return x;
+    }
+
+    int YPositionGeben ()
+    {
+        return y;
+    }
+    
+    boolean FigurTrifftStein ()
+    {
+        {
+            if ((figur.XPositionGeben() == stein.XPositionGeben()) && (figur.YPositionGeben() == stein.YPositionGeben()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    }
+    
