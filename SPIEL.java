@@ -9,6 +9,8 @@ import java. awt. event. *;
  */
 class SPIEL extends SIMULATION
 {
+    BODEN boden;
+    
     STEIN stein;
     
     FIGUR figur;
@@ -29,6 +31,8 @@ class SPIEL extends SIMULATION
      */
     SPIEL ()
     {
+        boden = new BODEN ();
+        stein = new STEIN ();
         figur = new FIGUR ();
         spielfeldrand = new RANDSYMBOL ();
         punkte = 0;
@@ -37,27 +41,9 @@ class SPIEL extends SIMULATION
     
     void TaktImpulsAusfuehren ()
     {
-        if ((figur. XPositionGeben() <= spielfeldrand. XMaxGeben()) && (figur. XPositionGeben() >= spielfeldrand. XMinGeben()) &&
-            (figur. YPositionGeben() <= spielfeldrand. YMaxGeben()) && (figur. YPositionGeben() >= spielfeldrand. YMinGeben()) &&
-            ! figur. FigurTrifftStein())
-        {
-            aktSchritte = aktSchritte - 1;
-            if (aktSchritte <= 0)
-            {
-                figur. Bewegen(true);
-                aktSchritte = maxSchritte;
-            }
-            else
-            {
-                figur. Bewegen(false);
-            }
-            punkte += 1;
-            spielfeldrand. PunkteSetzen (punkte);
-        }
-        else
         {
             Anhalten ();
-            if (figur. FigurTrifftStein())
+            if (FigurTrifftStein())
             {
                 spielfeldrand.EndemeldungSetzen("Game Over - Figur trifft Hindernis");
             }
@@ -93,7 +79,7 @@ class SPIEL extends SIMULATION
         }
     }
     
-    void Bewegen (boolean springen)
+    void Springen ()
     {
         int x, xalt;
         int y, yalt;
