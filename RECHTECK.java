@@ -31,9 +31,9 @@ class RECHTECK
     {
         x = 10;
         y = 10;
-        breite = 100;
-        höhe = 100;
-        farbe = "rot";
+        breite = 0;
+        höhe = 0;
+        farbe = "grau";
         sichtbar = true;
         winkel = 0;
         symbol = ZEICHENFLAECHE.SymbolErzeugen(ZEICHENFLAECHE.SymbolArt.rechteck);
