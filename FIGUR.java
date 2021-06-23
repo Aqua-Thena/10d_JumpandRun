@@ -12,24 +12,19 @@ class FIGUR extends RECHTECK
     {
         figur = new RECHTECK();
         
-        figur.PositionSetzen(20,120);
-        figur.GroesseSetzen(140,140);
-        figur.FarbeSetzen("pink");
+        figur.PositionSetzen(20,460);
+        figur.GroesseSetzen(40,40);
+        figur.FarbeSetzen("magenta");
         
         x = 0;
         y = 0;
     }
     
-    void PositionSetzen (int xNeu, int yNeu)
-        {
+    void Springen (int xNeu, int yNeu)
+    {
         x = xNeu;
         y = yNeu;
-        figur.PositionSetzen (x + 20, y + 120);
-    }
-    
-    void Springen (int xNeu, int yNeu)
-    {   
-        
+        figur.PositionSetzen (x -= 40, y += 0);
     }
     
     int XPositionGeben ()

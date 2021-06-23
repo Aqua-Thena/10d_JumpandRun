@@ -12,6 +12,10 @@ class STEIN extends RECHTECK
     {
         stein = new RECHTECK();
         
+        stein.PositionSetzen(400,460);
+        stein.GroesseSetzen(40,40);
+        stein.FarbeSetzen("schwarz");
+        
         x = 0;
         y = 0;
     }
@@ -28,7 +32,7 @@ class STEIN extends RECHTECK
         PositionSetzen (x + param1, y + param2);
     }
     
-     int XPositionGeben ()
+    int XPositionGeben ()
     {
         return x;
     }
