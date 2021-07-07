@@ -24,20 +24,7 @@ class FIGUR extends RECHTECK
     {
         x = xNeu;
         y = yNeu;
-        figur.PositionSetzen (x -= 40, y += 0);
-    }
-    
-    int XPositionGeben ()
-    {
-        return x;
+        figur.PositionSetzen (x -= 0, y += 40);
     }
 
-    /**
-     * Gibt den Y-Wert der Position des Kopfelements.
-     * @return y-Position
-     */
-    int YPositionGeben ()
-    {
-        return y;
-    }
 }

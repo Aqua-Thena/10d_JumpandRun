@@ -1,7 +1,7 @@
   
 import java.awt.*;
 import javax. swing. *;
-
+//import java. Util. *;
 class STEIN extends RECHTECK
 {
     RECHTECK stein;
@@ -20,26 +20,22 @@ class STEIN extends RECHTECK
         y = 0;
     }
     
-    void PositionSetzen (int xNeu, int yNeu)
-        {
-        x = xNeu;
-        y = yNeu;
-        stein.PositionSetzen (x + 20, y + 120);
+    //void PositionSetzen (int xNeu, int yNeu)
+    {
+        //x = xNeu;
+        //y = yNeu;
+        //stein.PositionSetzen (x + 20, y + 120);
     }
     
-    void Verschieben (int param1, int param2)
+    //void Verschieben (int param1, int param2)
     {
-        PositionSetzen (x + param1, y + param2);
+        //PositionSetzen (x + param1, y + param2);
     }
     
-    int XPositionGeben ()
+    //int XKoordinateZufaelligGeben()
     {
-        return x;
-    }
-
-    int YPositionGeben ()
-    {
-        return y;
+        //return zzGenerator. nextInt (spielfeldrand. XMaxGeben() - 
+        //spielfeldrand. XMinGeben() + 1) + spielfeldrand. XMinGeben();
     }
     
 }

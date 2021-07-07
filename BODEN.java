@@ -19,13 +19,5 @@ class BODEN extends RECHTECK
         
         x = 0;
         y = 0;
-    }
-    
-    void PositionSetzen (int xNeu, int yNeu)
-    {
-        x = xNeu;
-        y = yNeu;
-        boden.PositionSetzen (x + 20, y + 120);
-    }
-    
+    }    
 }

@@ -31,21 +31,6 @@ import java. awt. event. *;
         aktSpruenge = maxSpruenge;
     }
     
-    void TaktImpulsAusfuehren ()
-    {
-        {
-            Anhalten ();
-            if (FigurTrifftStein())
-            {
-                spielfeldrand.EndemeldungSetzen("Game Over - Figur trifft Hindernis");
-            }
-            else
-            {
-                spielfeldrand.EndemeldungSetzen("Game Over - Figur über Spielfeldrand");
-            }
-        }
-    }
-    
     /**
      * Wertet die Tasteneingaben aus.
      * @param welche Tastencode
@@ -54,29 +39,74 @@ import java. awt. event. *;
     {
         switch (welche)
         {
-          case 'S':
-          case 's':
+           case 'S':
+           case 's':
             Starten ();
             break;
-          case 'P':
-          case 'p':
+           case 'P':
+           case 'p':
             Anhalten ();
             break;
+           case 'J':
+           case 'j':
+            Springen ();
+            break;
          
-          default:
+           default:
             //System. out. println ("Taste: " + (0 + (int) welche));
         }
     }
-     
-    boolean FigurTrifftStein ()
+    
+    void Springen (int xNeu, int yNeu)
+    {
+        x = xNeu;
+        y = yNeu;
+        figur.PositionSetzen (x -= 0, y += 40);
+    }
+    
+    //boolean FigurTrifftStein ()
     {
         {
-            if ((figur.XPositionGeben() == stein.XPositionGeben()) && (figur.YPositionGeben() == stein.YPositionGeben()))
+            //if ((figur.XPositionGeben() == stein.XPositionGeben()) && (figur.YPositionGeben() == stein.YPositionGeben()))
             {
-                return true;
+                //return true;
             }
         }
-        return false;
+        //return false;
     }
+    
+    //void TaktImpulsAusfuehren ()
+    {
+        //if ((stein. XPositionGeben() <= spielfeldrand. XMaxGeben()) && (stein. XPositionGeben() >= spielfeldrand. XMinGeben()) &&
+            //(stein. YPositionGeben() <= spielfeldrand. YMaxGeben()) && (stein. YPositionGeben() >= spielfeldrand. YMinGeben()) &&
+            //! FigurTrifftStein())
+        {
+            
+            //if (aktSpruenge <= 0)
+            {
+                //stein. Bewegen(true);
+                //aktSpruenge = maxSpruenge;
+            }
+            //else
+            {
+                //stein. Bewegen(false);
+            }
+          
+        }
+        //else
+        {
+            //Anhalten ();
+            //if (FigurTrifftStein())
+            {
+                //spielfeldrand.EndemeldungSetzen("Game Over - Figur ist gegen Stein gerannt");
+            }
+            //else
+            {
+                //spielfeldrand.EndemeldungSetzen("Game Over");
+            }
+        }
     }
+ 
+}
+    
     
