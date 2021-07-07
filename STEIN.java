@@ -27,11 +27,6 @@ class STEIN extends RECHTECK
         //stein.PositionSetzen (x + 20, y + 120);
     }
     
-    //void Verschieben (int param1, int param2)
-    {
-        //PositionSetzen (x + param1, y + param2);
-    }
-    
     //int XKoordinateZufaelligGeben()
     {
         //return zzGenerator. nextInt (spielfeldrand. XMaxGeben() - 
